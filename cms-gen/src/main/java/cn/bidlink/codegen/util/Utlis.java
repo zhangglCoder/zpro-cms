@@ -102,46 +102,52 @@ public class Utlis {
     public static String getEntityNameType(String tableColumnType) {
         tableColumnType = tableColumnType.toLowerCase();
         StringBuffer result = new StringBuffer();
-        if (tableColumnType.contains("bigint")) {
+        if ("int unsigned".equals(tableColumnType)) {
+            result.append("Integer");
+        }
+        if ("tinyint unsigned".equals(tableColumnType)) {
+            result.append("Integer");
+        }
+        if ("smallint unsigned".equals(tableColumnType)) {
+            result.append("Integer");
+        }
+        if ("bigint".equals(tableColumnType)) {
             result.append("Long");
         }
-        if ("smallint".contains(tableColumnType)) {
+        if ("mediumint unsigned".equals(tableColumnType)) {
             result.append("Integer");
         }
-        if ("mediumint".contains(tableColumnType)) {
+        if ("int".equals(tableColumnType)) {
             result.append("Integer");
         }
-        if ("int".contains(tableColumnType)) {
-            result.append("Integer");
-        }
-        if ("varchar".contains(tableColumnType)) {
+        if ("varchar".equals(tableColumnType)) {
             result.append("String");
         }
-        if ("tinyint".contains(tableColumnType)) {
+        if ("tinyint".equals(tableColumnType)) {
             result.append("Integer");
         }
-        if ("datetime".contains(tableColumnType)) {
+        if ("datetime".equals(tableColumnType)) {
             result.append("Date");
         }
-        if ("date".contains(tableColumnType)) {
+        if ("date".equals(tableColumnType)) {
             result.append("Date");
         }
-        if ("mediumtext".contains(tableColumnType)) {
+        if ("mediumtext".equals(tableColumnType)) {
             result.append("String");
         }
-        if ("timestamp".contains(tableColumnType)) {
+        if ("timestamp".equals(tableColumnType)) {
             result.append("Timestamp");
         }
-        if ("decimal".contains(tableColumnType)) {
+        if ("decimal".equals(tableColumnType)) {
             result.append("Double");
         }
-        if ("smallint".contains(tableColumnType)) {
+        if ("smallint".equals(tableColumnType)) {
             result.append("Integer");
         }
-        if ("char".contains(tableColumnType)) {
+        if ("char".equals(tableColumnType)) {
             result.append("String");
         }
-        if ("longtext".contains(tableColumnType)) {
+        if ("longtext".equals(tableColumnType)) {
             result.append("String");
         }
 
