@@ -1,30 +1,23 @@
 package cn.zpro.app.config;
 
-import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
+import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@MapperScan("com.baomidou.springboot.mapper*")
-public class MybatisPlusConfig {
-    /**
-     * mybatis-plus SQL执行效率插件【生产环境可以关闭】
-     */
-    @Bean
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
-    }
+import javax.sql.DataSource;
 
-    /**
-     * mybatis-plus分页插件<br>
-     * 文档：http://mp.baomidou.com<br>
-     */
+@Configuration
+public class MybatisPlusConfig {
+
+    @Autowired
+    private DataSource dataSource;
+
     @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setLocalPage(true);// 开启 PageHelper 的支持
-        return paginationInterceptor;
+    private MybatisSqlSessionFactoryBean sqlSessionFactory(){
+        MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setTypeAliasesPackage("");
+        return sqlSessionFactoryBean;
     }
 }

@@ -37,19 +37,24 @@
 
         <!-- mybatis-plus begin -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatisplus-spring-boot-starter</artifactId>
-            <version>${mybatisplus-spring-boot-starter.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
-            <version>${mybatisplus.version}</version>
+            <version>1.4.7</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatisplus-spring-boot-starter</artifactId>-->
+            <!--<version>${mybatisplus-spring-boot-starter.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus</artifactId>-->
+            <!--<version>${mybatisplus.version}</version>-->
+        <!--</dependency>-->
         <!-- mybatis-plus end -->
 
         <!--文档相关-->
