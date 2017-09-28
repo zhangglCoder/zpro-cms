@@ -1,0 +1,8 @@
+<bean id="${xdaoName}" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <property name="mapperInterface" value="${packageName}.dao.${daoName}" />
+    <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+
+<bean id="dubbo${modelName}Service" class="${packageName}.service.impl.${DubboServiceImplName}">
+    <property name="${xdaoName}" ref="${xdaoName}" />
+</bean>

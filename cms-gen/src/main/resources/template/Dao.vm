@@ -1,0 +1,95 @@
+package ${packageName}.dao;
+import ${packageName}.entity.${modelName};
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+
+/**
+* ${daoName} Mybatis数据访问接口
+* @author :$author
+* @date :$date
+*/
+public interface ${daoName} {
+
+    /**
+    * 新增条目
+    * @param ${xmodelName} 带有新增数据的对象
+    * @return 返回主键 Long
+    * @author :$author
+    * @date :$date
+    */
+    Long insert(${modelName} ${xmodelName});
+
+    /**
+    * 更新条目
+    *
+    * @param ${xmodelName} 带有更新数据的对象
+    * @return 返回更新条目数据库影响数 integer
+    * @author :$author
+    * @date :$date
+    */
+    Integer update(${modelName} ${xmodelName});
+
+    /**
+    * 根据主键-物理删除
+    *
+    * @param id        主键ID
+    * @param companyId 企业ID
+    * @return 返回删除条目数据库影响数 integer
+    * @author :$author
+    * @date :$date
+    */
+    Integer delete(@Param("id") Long id);
+
+    /**
+    * 根据主键-逻辑删除
+    *
+    * @param id        主键ID
+    * @param companyId 企业ID
+    * @return 返回删除条目数据库影响数 integer
+    * @author :$author
+    * @date :$date
+    */
+    Integer deleteLogic(@Param("id") Long id);
+
+    /**
+    * 根据ID查询对应的条目
+    *
+    * @param id        id
+    * @param companyId 企业ID
+    * @return 返回查询的结果
+    * @author :$author
+    * @date :$date
+    */
+    ${modelName} getByPk(@Param("id") Long id);
+
+    /**
+    * 根据条件查询对应的条目总数
+    *
+    * @param ${xmodelName} 带有查询条件的对象
+    * @return 返回查询的结果总数
+    * @author :$author
+    * @date :$date
+    */
+    Long findCount(${modelName} ${xmodelName});
+
+    /**
+    * 根据条件查询对应的条目
+    *
+    * @param ${xmodelName} 带有查询条件的对象
+    * @return 返回查询的结果集合 list
+    * @author :$author
+    * @date :$date
+    */
+    List<${modelName}> findByCondition(${modelName} ${xmodelName});
+
+    /**
+    * 批量插入
+    *
+    * @param ${xmodelName}List 需要批量出入的对象集合
+    * @return 返回数据库的影响条数 long
+    * @author :$author
+    * @date :$date
+    */
+    Integer insertBatch(List<${modelName}> ${xmodelName}List);
+
+}

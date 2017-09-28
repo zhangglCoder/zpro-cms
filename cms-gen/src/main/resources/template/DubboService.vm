@@ -1,0 +1,106 @@
+package ${packageName}.service;
+
+import cn.bidlink.base.ServiceResult;
+import cn.bidlink.base.util.PageSet;
+import ${packageName}.entity.${modelName};
+
+import java.util.List;
+
+/**
+* ${DubboServiceName} Dubbo服务接口
+* @author :$author
+* @date :$date
+*/
+public interface ${DubboServiceName} {
+
+    /**
+    * 新增条目
+    *
+    * @param ${xmodelName} 带有新增数据的对象
+    * @return 返回新增条目数据库影响数
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<Long> save(${modelName} ${xmodelName});
+
+    /**
+    * 更新条目
+    *
+    * @param ${xmodelName} 带有更新数据的对象
+    * @return 返回更新条目数据库影响数
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<Integer> update(${modelName} ${xmodelName});
+
+    /**
+    * 根据主键-物理删除
+    *
+    * @param id  主键id
+    * @return 返回删除条目数据库影响数
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<Integer> delete(Long id);
+
+    /**
+    * 根据主键-逻辑删除
+    *
+    * @param id  主键id
+    * @return 返回删除条目数据库影响数
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<Integer> deleteLogic(Long id);
+
+    /**
+    * 根据ID查询对应的条目
+    *
+    * @param id  主键id
+    * @return 返回查询的结果
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<${modelName}> findByPK(Long id);
+
+    /**
+    * 根据条件查询对应的条目总数
+    *
+    * @param ${xmodelName} 带有查询条件的对象
+    * @return 返回查询的结果总数
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<Long> getTotalCount(${modelName} ${xmodelName});
+
+    /**
+    * 根据条件查询对应的条目
+    *
+    * @param ${xmodelName} 带有查询条件的对象
+    * @param pageSet         分页对象
+    * @return 返回查询的结果集合
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<List<${modelName}>> findByCondition(${modelName} ${xmodelName},PageSet pageSet);
+
+    /**
+    * 根据条件查询对应的条目
+    *
+    * @param ${xmodelName} 带有查询条件的对象
+    * @return 返回查询的结果集合
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<List<${modelName}>> findByCondition(${modelName} ${xmodelName});
+
+    /**
+    * 批量插入
+    *
+    * @param ${xmodelName}List 需要批量出入的对象集合
+    * @return 返回数据库的影响条数 service result
+    * @author :$author
+    * @date :$date
+    */
+    ServiceResult<Integer> insertBatch(List<${modelName}> ${xmodelName}List);
+}

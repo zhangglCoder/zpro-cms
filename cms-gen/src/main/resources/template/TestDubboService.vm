@@ -1,0 +1,99 @@
+package ${packageName}.test;
+
+import cn.bidlink.base.util.PageSet;
+import ${packageName}.entity.${modelName};
+import ${packageName}.service.${DubboServiceName};
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+* Test${DubboServiceName} 单元测试类
+* @author   $author
+* @Date	 $date
+*/
+public class Test${DubboServiceName} extends TestBase {
+
+    private ${DubboServiceName} service;
+
+    @Override
+    protected void init() {
+        service = context.getBean(${DubboServiceName}.class);
+    }
+
+    /**
+    * 添加
+    */
+    public void testSave(){
+             ${testEntityCode}
+        print(service.save(entity));
+    }
+    /**
+    * 更新
+    */
+    public void testUpdate(){
+             ${testEntityCode}
+        print(service.update(entity));
+    }
+
+    /**
+    * 物理删除
+    */
+    public void testDelete(){
+         print(service.delete(8243L,51515123L));
+    }
+
+    /**
+    * 逻辑删除
+    */
+    public void testDeleteLogic(){
+        print(service.deleteLogic(8243L,51515123L));
+    }
+
+    /**
+    * 根据联合主键查询对象
+    */
+    public void testFindByPK(){
+        print(service.findByPK(1L,123L));
+    }
+
+    /**
+    * 分页查询列表
+    */
+    public void testFindByCondition(){
+        PageSet pageSet = new PageSet();
+        pageSet.setPageNum(1);
+        pageSet.setPageSize(10);
+        ${modelName} entity = new ${modelName}();
+        entity.setIsTest(1);
+        print(service.findByCondition(entity,pageSet));
+    }
+
+    /**
+    * 不分页查询列表
+    */
+    public void testFindByCondition2(){
+        ${modelName} entity = new ${modelName}();
+        entity.setIsTest(1);
+        print(service.findByCondition(entity));
+    }
+
+    /**
+    * 查询总记录数
+    */
+    public void testGetTotalCount(){
+        ${modelName} entity = new ${modelName}();
+        entity.setIsTest(1);
+        print(service.getTotalCount(entity));
+    }
+    /**
+    * 批量插入
+    */
+    public void testInsertBatch() {
+        ${testEntityCodeBatch}
+        List<${modelName}> list = new ArrayList<>();
+        list.add(entity);
+        list.add(entity1);
+        print(service.insertBatch(list));
+    }
+
+}

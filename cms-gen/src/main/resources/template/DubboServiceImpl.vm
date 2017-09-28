@@ -1,0 +1,150 @@
+package ${packageName}.service.impl;
+
+import cn.bidlink.base.ServiceResult;
+import cn.bidlink.base.util.PageSet;
+import ${packageName}.dao.${daoName};
+import ${packageName}.entity.${modelName};
+import ${packageName}.service.${DubboServiceName};
+import com.github.pagehelper.PageHelper;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.List;
+
+/**
+* ${DubboServiceImplName} Dubbo服务实现类
+* @author :$author
+* @date :$date
+*/
+public class ${DubboServiceImplName} implements ${DubboServiceName} {
+    private static final Logger log = LoggerFactory.getLogger(${DubboServiceImplName}.class);
+    private ${daoName} ${xdaoName};
+
+    @Override
+    public ServiceResult<Long> save(${modelName} ${xmodelName}) {
+        ServiceResult<Long> result = new ServiceResult<Long>();
+            try {
+                ${xdaoName}.insert(${xmodelName});
+                result.setResult(${xmodelName}.getId());
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#insert",e);
+                log.error("方法使用参数：[{}]", ${xmodelName});
+                result.setErrMessage("调用save方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+
+    @Override
+    public ServiceResult<Integer> update(${modelName} ${xmodelName}) {
+        ServiceResult<Integer> result = new ServiceResult<>();
+            try {
+                result.setResult(${xdaoName}.update(${xmodelName}));
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#update",e);
+                log.error("方法使用参数：[{}]", ${xmodelName});
+                result.setErrMessage("调用update方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+
+    @Override
+    public ServiceResult<Integer> delete(Long id) {
+        ServiceResult<Integer> result = new ServiceResult<>();
+            try {
+                result.setResult(${xdaoName}.delete(id));
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#delete",e);
+                log.error("方法使用参数：[{},{}]", id, companyId);
+                result.setErrMessage("调用delete方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+
+    @Override
+    public ServiceResult<Integer> deleteLogic(Long id) {
+        ServiceResult<Integer> result = new ServiceResult<>();
+            try {
+                result.setResult(${xdaoName}.deleteLogic(id));
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#deleteLogic",e);
+                log.error("方法使用参数：[{},{}]", id, companyId);
+                result.setErrMessage("调用deleteLogic方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+
+    @Override
+    public ServiceResult<${modelName}> findByPK(Long id) {
+        ServiceResult<${modelName}> result = new ServiceResult<>();
+            try {
+                result.setResult(${xdaoName}.getByPk(id, companyId));
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#findByPK",e);
+                log.error("方法使用参数：[{},{}]", id, companyId);
+                result.setErrMessage("调用findByPK方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+
+    @Override
+    public ServiceResult<Long> getTotalCount(${modelName} ${xmodelName}) {
+        ServiceResult<Long> result = new ServiceResult<Long>();
+            try {
+                result.setResult(${xdaoName}.findCount(${xmodelName}));
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#getTotalCount",e);
+                log.error("方法使用参数：[{}]", ${xmodelName});
+                result.setErrMessage("调用getTotalCount方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+
+    @Override
+    public ServiceResult<List<${modelName}>> findByCondition(${modelName} ${xmodelName}, PageSet pageSet) {
+        ServiceResult<List<${modelName}>> result = new ServiceResult<List<${modelName}>>();
+            try {
+            if (pageSet != null && pageSet.getPageNum() != null && pageSet.getPageSize() != null) {
+                PageHelper.startPage(pageSet.getPageNum(), pageSet.getPageSize());
+            }
+            if (pageSet != null && StringUtils.isNotBlank(pageSet.getSortColumn())) {
+                PageHelper.orderBy(pageSet.getSortColumn());
+            }
+                result.setResult(${xdaoName}.findByCondition(${xmodelName}));
+                result.setTotal(${xdaoName}.findCount( ${xmodelName}));
+            } catch (Exception e) {
+                log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#findByCondition",e);
+                log.error("方法使用参数：[{},{}]", ${xmodelName}, pageSet);
+                result.setErrMessage("调用findByCondition方法异常，异常信息：" + e.getMessage());
+            }
+            return result;
+    }
+    @Override
+    public ServiceResult<List<${modelName}>> findByCondition(${modelName} ${xmodelName}) {
+        ServiceResult<List<${modelName}>> result = new ServiceResult<List<${modelName}>>();
+        try {
+            result.setResult(${xdaoName}.findByCondition(${xmodelName}));
+            result.setTotal(${xdaoName}.findCount( ${xmodelName}));
+        } catch (Exception e) {
+            log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#findByCondition",e);
+            log.error("方法使用参数：[{}]", ${xmodelName});
+            result.setErrMessage("调用findByCondition方法异常，异常信息：" + e.getMessage());
+        }
+        return result;
+    }
+    @Override
+    public ServiceResult<Integer> insertBatch(List<${modelName}> ${xmodelName}List) {
+        ServiceResult<Integer> result = new ServiceResult<>();
+        try {
+            result.setResult(${xdaoName}.insertBatch(${xmodelName}List));
+        } catch (Exception e) {
+            log.error("调用{}方法 异常", "${DubboServiceImplName}.${daoName}#insertBatch",e);
+            log.error("方法使用参数：[{}]", ${xmodelName}List);
+            result.setErrMessage("调用insertBatch方法异常，异常信息：" + e.getMessage());
+        }
+        return result;
+    }
+
+    public void set${daoName}(${daoName} ${xdaoName}) {
+        this.${xdaoName} = ${xdaoName};
+    }
+}

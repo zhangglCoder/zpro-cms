@@ -1,0 +1,135 @@
+#set($size = $listColumnMode.size())
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 命名空间 -->
+<mapper namespace="${packageName}.dao.$daoName">
+
+    <!-- 返回的结果resultMap -->
+    <resultMap id="RM_${modelName}" type="${packageName}.entity.${modelName}">
+        #foreach($item in $listColumnMode)
+            <result property="${item.entityName}" column="${item.columnName}"/>
+        #end
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+#foreach($item in $listColumnMode)
+        ${item.columnName}##
+#if($velocityCount != $size)
+,
+#end
+#end
+
+    </sql>
+
+    <!-- 插入方法 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO $tableName (
+#foreach($item in $listColumnMode)
+            ${item.columnName}##
+#if($velocityCount != $size),
+#end
+#end
+
+        ) VALUES (
+#foreach($item in $listColumnMode)
+            #{${item.entityName}}##
+#if($velocityCount != $size)
+,
+#end
+#end
+
+        )
+    </insert>
+
+    <sql id="update_sql">
+        <set>
+            #foreach($item in $listColumnMode)
+                #if($velocityCount == $size)
+                    <if test="${item.entityName} != null">
+                        ${item.columnName} = #{${item.entityName}}
+                    </if>
+                #else
+                    <if test="${item.entityName} != null">
+                        ${item.columnName} = #{${item.entityName}},
+                    </if>
+                #end
+            #end
+        </set>
+    </sql>
+    <!-- 更新方法 -->
+    <update id="update">
+        UPDATE  ${tableName}
+        <include refid="update_sql"/>
+        WHERE
+        id = #{id}
+    </update>
+    <!-- 物理删除 -->
+    <delete id="delete">
+        DELETE FROM ${tableName} WHERE
+        id = #{id}
+    </delete>
+    <!-- 逻辑删除 -->
+    <delete id="deleteLogic">
+        UPDATE  ${tableName}
+        SET is_del = 1
+        WHERE
+        id = #{id}
+    </delete>
+    <!-- 根据主键查询 -->
+    <select id="getByPk" resultMap="RM_${modelName}">
+        SELECT
+        <include refid="columns"/>
+        FROM ${tableName}
+        WHERE
+        id = #{id}
+    </select>
+    <sql id="findPage_where">
+        <!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+        <where>
+            #foreach($item in $listColumnMode)
+                <if test="${item.entityName} != null">
+                    AND ${item.columnName} = #{${item.entityName}}
+                </if>
+            #end
+        </where>
+    </sql>
+    <!-- 查询总条数 -->
+    <select id="findCount" resultType="long">
+        SELECT count(1) FROM ${tableName}
+        <include refid="findPage_where"/>
+    </select>
+    <!-- 根据条件查询结果集 -->
+    <select id="findByCondition" resultMap="RM_${modelName}">
+        SELECT
+        <include refid="columns"/>
+        FROM ${tableName}
+        <include refid="findPage_where"/>
+
+    </select>
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="List">
+        INSERT INTO ${tableName} (
+        #foreach($item in $listColumnMode)
+            #if($velocityCount == $size)
+                ${item.columnName}
+            #else
+                ${item.columnName},
+            #end
+        #end
+        ) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #foreach($item in $listColumnMode)
+                #if($velocityCount == $size)
+                    #{item.${item.entityName}}
+                #else
+                    #{item.${item.entityName}},
+                #end
+            #end
+            )
+        </foreach>
+    </insert>
+</mapper>
+

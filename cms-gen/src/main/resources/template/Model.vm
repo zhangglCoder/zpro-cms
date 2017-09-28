@@ -1,0 +1,37 @@
+package ${packageName}.entity;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+* @table ${tableName} ${tableComment}
+* @author   $author
+* @Date	 $date
+*/
+public class $modelName implements Serializable {
+
+    private static final long serialVersionUID = -1L;
+
+#foreach($item in $listColumnMode)
+    /**
+    * @描述: ${item.entityName} ${item.columnComment}
+    * @字段: ${item.columnName} ${item.columnType}(${item.datasize})
+    */
+    #if($item.entityName == 'isDel' || $item.entityName == 'isTest')
+private ${item.entityType} ${item.entityName} = 0;
+    #else
+private ${item.entityType} ${item.entityName};
+    #end
+#end
+
+#foreach($item in $listColumnMode)
+    public void set${item.entityFunName}(${item.entityType} ${item.entityName}) {
+        this.${item.entityName} = ${item.entityName};
+    }
+
+    public ${item.entityType} get${item.entityFunName}() {
+        return this.${item.entityName};
+    }
+#end
+
+}
+

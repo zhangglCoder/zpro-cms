@@ -10,12 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cms-app</artifactId>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+        <mybatisplus.version>2.1.1</mybatisplus.version>
+        <fastjson.version>1.2.38</fastjson.version>
+    </properties>
+
     <dependencies>
-        <!-- <dependency>
-             <groupId>org.mybatis.spring.boot</groupId>
-             <artifactId>mybatis-spring-boot-starter</artifactId>
-             <version>1.3.1</version>
-         </dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -30,6 +35,23 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- mybatis-plus begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>${mybatisplus-spring-boot-starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatisplus.version}</version>
+        </dependency>
+        <!-- mybatis-plus end -->
+
         <!--文档相关-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -42,25 +64,9 @@
             <version>2.6.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
-            <version>1.1.2.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-staticdocs</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.8</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test-autoconfigure</artifactId>
-            <version>1.5.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -72,61 +78,38 @@
             <artifactId>spring-test</artifactId>
             <version>4.3.10.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.28</version>
+        </dependency>
 
 
     </dependencies>
+
     <build>
         <plugins>
+            <!-- spring boot 插件 -可打成单独可运行的JAR  spring.boot.version 已声明-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <includes>
-                        <include>**/*Documentation.java</include>
-                    </includes>
+                    <mainClass>cn.zpro.app.Application</mainClass>
+                    <layout>JAR</layout>
+                    <fork>true</fork>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.3</version>
-
-                <!-- Configure generic document generation settings -->
-                <configuration>
-                    <sourceDirectory>${project.basedir}/docs/asciidoc</sourceDirectory>
-                    <sourceDocumentName>index.adoc</sourceDocumentName>
-                    <attributes>
-                        <doctype>book</doctype>
-                        <toc>left</toc>
-                        <toclevels>3</toclevels>
-                        <numbered></numbered>
-                        <hardbreaks></hardbreaks>
-                        <sectlinks></sectlinks>
-                        <sectanchors></sectanchors>
-                        <generated>${project.build.directory}/asciidoc</generated>
-                    </attributes>
-                </configuration>
-                <!-- Since each execution can only handle one backend, run
-                     separate executions for each desired output type -->
                 <executions>
                     <execution>
-                        <id>output-html</id>
-                        <phase>test</phase>
                         <goals>
-                            <goal>process-asciidoc</goal>
+                            <goal>repackage</goal>
                         </goals>
-                        <configuration>
-                            <backend>html5</backend>
-                            <!--<outputDirectory>${project.basedir}/docs/asciidoc/html</outputDirectory>-->
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
 
+        </plugins>
     </build>
+
+
+
 </project>
