@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
+
+<center><h1>开服表</h1></center>
+<table border="1" width="100%">
+    <tr>
+        <th>游戏名称</th>
+        <th>游戏类型</th>
+        <th>开服时间</th>
+        <th>开服区</th>
+    </tr>
+
+    <tr th:each="yx : ${list}">
+        <td th:text="${yx.title}"></td>
+        <td th:text="${yx.type}"></td>
+        <td th:text="${yx.openTime}"></td>
+        <td th:text="${yx.area}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

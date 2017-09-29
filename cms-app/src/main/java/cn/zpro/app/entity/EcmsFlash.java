@@ -1,5 +1,4 @@
 package cn.zpro.app.entity;
-import com.baomidou.mybatisplus.activerecord.Model;
 
 import java.io.Serializable;
 
@@ -8,7 +7,7 @@ import java.io.Serializable;
 * @author   <a href="mailto:742819432@qq.com">zhanggl</a>
 * @Date	 2017-09-28
 */
-public class EcmsFlash extends Model<EcmsFlash> implements Serializable {
+public class EcmsFlash implements Serializable {
 
     private static final long serialVersionUID = -1L;
 
@@ -554,9 +553,5 @@ public class EcmsFlash extends Model<EcmsFlash> implements Serializable {
         return this.pingji;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
 }
 
