@@ -13,4 +13,9 @@ public interface UserMapper {
     @Select("select * from www_92game_net_ecms_flash limit 1,10")
     List<EcmsFlash> selectListBySQL();
 
+    @Select("select id,title from www_92game_net_ecms_flash")
+    List<EcmsFlash> findAlltitle();
+
+    @Select("select id,title from www_92game_net_ecms_flash where title=#{title}")
+    EcmsFlash getFlashByTitle(String title);
 }

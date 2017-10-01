@@ -16,4 +16,14 @@ public class CmsService {
     public List<EcmsFlash> findList(){
         return userMapper.selectListBySQL();
     }
+
+    public List<EcmsFlash> findAllTitle(){
+        return userMapper.findAlltitle();
+    }
+
+    public EcmsFlash getFlashByTitle(String title){
+        return userMapper.getFlashByTitle(title);
+    }
+
+
 }
