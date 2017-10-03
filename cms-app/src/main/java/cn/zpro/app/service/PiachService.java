@@ -41,4 +41,29 @@ public class PiachService {
         }
         return null;
     }
+
+    public List<OpenTables> findOpenTableJjkfList(){
+        List<OpenTables> tablesList = new ArrayList<>();
+        try {
+            Document doc = Jsoup.connect("http://www.7724.com/kaifu.html").get();
+            Elements now_kf = doc.getElementsByClass("open_t_r_jjkc");
+            Elements selectTr = now_kf.select("tr");
+            for (Element element :selectTr){
+                Elements th = element.select("th");
+                if(th.size() <=0 ){
+                    OpenTables openTables = new OpenTables();
+                    openTables.setTitle(element.select("p[class='p1'] a").text());
+                    openTables.setArea(element.select("p[class='p2'] i").text());
+                    openTables.setOpenTime(element.select("td").text());
+                    openTables.setType(element.select("p[class='p2']").text());
+                    tablesList.add(openTables);
+                }
+            }
+            return tablesList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
