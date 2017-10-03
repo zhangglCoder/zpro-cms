@@ -23,15 +23,16 @@ public class MainController {
     @Autowired
     private PiachService piachService;
 
-    @RequestMapping("index")
+    @RequestMapping("kaifu")
     public ModelAndView index(ModelAndView view){
-        view.setViewName("index");
+        view.setViewName("kaifu");
         List<OpenTables> list = new ArrayList<>();
         List<OpenTables> openTableList = piachService.findOpenTableList();
         for (OpenTables openTables:openTableList) {
             String title = openTables.getTitle();
             EcmsFlash ecmsFlash = cmsService.getFlashByTitle(title);
             if(null != ecmsFlash){
+                openTables.setTitlePic(ecmsFlash.getTitlepic());
                 list.add(openTables);
             }
         }
@@ -39,10 +40,9 @@ public class MainController {
 
         return view;
     }
-    @RequestMapping("kaifu")
+    @RequestMapping("kaifu_info")
     public ModelAndView kaifu(ModelAndView view){
-
-        view.setViewName("kaifu");
+        view.setViewName("kaifu_info");
         return view;
     }
 }

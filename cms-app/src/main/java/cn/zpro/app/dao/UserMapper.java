@@ -16,6 +16,6 @@ public interface UserMapper {
     @Select("select id,title from www_92game_net_ecms_flash")
     List<EcmsFlash> findAlltitle();
 
-    @Select("select id,title from www_92game_net_ecms_flash where title=#{title}")
+    @Select("select id,title,titlepic from www_92game_net_ecms_flash where title=#{title}")
     EcmsFlash getFlashByTitle(String title);
 }

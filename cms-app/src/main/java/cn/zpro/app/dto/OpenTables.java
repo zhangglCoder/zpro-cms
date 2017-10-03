@@ -15,6 +15,17 @@ public class OpenTables {
 
     private String type;
 
+    private String titlePic;
+
+
+    public String getTitlePic() {
+        return titlePic;
+    }
+
+    public void setTitlePic(String titlePic) {
+        this.titlePic = titlePic;
+    }
+
     public String getTitle() {
         return title;
     }
