@@ -47,7 +47,8 @@ public class PiachService {
         try {
             Document doc = Jsoup.connect("http://www.7724.com/kaifu.html").get();
             Elements now_kf = doc.getElementsByClass("open_t_r_jjkc");
-            Elements selectTr = now_kf.select("tr");
+            Element selectTable = now_kf.select("table").get(0);
+            Elements selectTr = selectTable.select("tr");
             for (Element element :selectTr){
                 Elements th = element.select("th");
                 if(th.size() <=0 ){
