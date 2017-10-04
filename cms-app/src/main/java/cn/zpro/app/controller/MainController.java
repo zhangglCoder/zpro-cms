@@ -3,7 +3,6 @@ package cn.zpro.app.controller;
 import cn.zpro.app.dao.UserMapper;
 import cn.zpro.app.dto.OpenTables;
 import cn.zpro.app.entity.EcmsFlash;
-import cn.zpro.app.service.CmsService;
 import cn.zpro.app.service.PiachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,27 +16,20 @@ import java.util.List;
 @RequestMapping("main")
 public class MainController {
 
-    @Autowired
-    private CmsService cmsService;
 
     @Autowired
     private PiachService piachService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @RequestMapping("kaifu")
     public ModelAndView index(ModelAndView view){
         view.setViewName("kaifu");
-        List<OpenTables> list = new ArrayList<>();
-        List<OpenTables> openTableList = piachService.findOpenTableList();
-        for (OpenTables openTables:openTableList) {
-            String title = openTables.getTitle();
-            EcmsFlash ecmsFlash = cmsService.getFlashByTitle(title);
-            if(null != ecmsFlash){
-                openTables.setTitlePic(ecmsFlash.getTitlepic());
-                list.add(openTables);
-            }
-        }
-        view.addObject("list",list);
-
+        List<EcmsFlash> todayList = userMapper.getTodayList();
+        List<OpenTables> comingList = userMapper.getComingList();
+        view.addObject("todayList",todayList);
+        view.addObject("comingList",comingList);
         return view;
     }
     @RequestMapping("kaifu_info")

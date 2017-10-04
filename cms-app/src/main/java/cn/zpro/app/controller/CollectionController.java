@@ -25,8 +25,6 @@ public class CollectionController {
     private PiachService piachService;
     @Autowired
     private ProcessMapper processMapper;
-    static int year = new Date().getYear();
-    static Calendar calendar = Calendar.getInstance();
 
     @RequestMapping("process")
     @ResponseBody
@@ -43,7 +41,8 @@ public class CollectionController {
             int days = Integer.parseInt(openTime.substring(3,5));
             int hours = Integer.parseInt(openTime.substring(6,8));
             int min = Integer.parseInt(openTime.substring(9,11));
-            calendar.set(2017, mouth, days,hours,min);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(2017, mouth-1, days,hours,min);
             kaifu.setCreateTime(calendar.getTime());
             kaifu.setTitle(openTables.getTitle());
             kaifu.setType(openTables.getType());
@@ -53,6 +52,5 @@ public class CollectionController {
     }
 
     public static void main(String[] args) {
-
     }
 }

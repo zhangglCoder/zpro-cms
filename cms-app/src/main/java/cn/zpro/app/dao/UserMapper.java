@@ -1,5 +1,6 @@
 package cn.zpro.app.dao;
 
+import cn.zpro.app.dto.OpenTables;
 import cn.zpro.app.entity.EcmsFlash;
 import org.apache.ibatis.annotations.Select;
 
@@ -10,12 +11,11 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    @Select("select * from www_92game_net_ecms_flash limit 1,10")
-    List<EcmsFlash> selectListBySQL();
+    @Select("select b.create_time as openTime,b.title,b.type,b.area,a.titlepic from www_92game_net_ecms_flash a , zhanggl_kaifu b\n" +
+            "where a.title = b.title and to_days(b.create_time) = to_days(now())")
+    List<EcmsFlash> getTodayList();
 
-    @Select("select id,title from www_92game_net_ecms_flash")
-    List<EcmsFlash> findAlltitle();
-
-    @Select("select id,title,titlepic from www_92game_net_ecms_flash where title=#{title}")
-    EcmsFlash getFlashByTitle(String title);
+    @Select("select b.create_time as openTime,b.title,b.type,b.area,a.titlepic from www_92game_net_ecms_flash a , zhanggl_kaifu b\n" +
+            "where a.title = b.title and to_days(b.create_time) > to_days(now())")
+    List<OpenTables> getComingList();
 }
