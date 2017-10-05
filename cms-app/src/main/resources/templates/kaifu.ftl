@@ -45,14 +45,14 @@
                         <#list todayList as item>
                             <tr>
                                 <td width="12%">
-                                    <a href="/slth/" title="${item.title}">
+                                    <a href="http://www.nowh5.com${item.titleUrl}" title="${item.title}">
                                         <img src="${item.titlePic}" alt="${item.title}"
                                              class="img1"/></a>
                                 </td>
                                 <td width="25%">
                                     <p class="p1">
                                         <em>
-                                            <a href="/slth/" class="a1">${item.title}</a>
+                                            <a href="http://www.nowh5.com${item.titleUrl}" class="a1">${item.title}</a>
                                         </em>
                                     </p>
                                     <p class="p1">
@@ -101,7 +101,7 @@
                                 <td>
                                 ${item.openTime?datetime("yyyy-MM-dd HH:mm")}
                                 </td>
-                                <td><p class="p1"><a href="/slth/" class="a1">${item.title}</a></p></td>
+                                <td><p class="p1"><a href="http://www.nowh5.com${item.titleUrl}" class="a1">${item.title}</a></p></td>
                                 <td><p class="p2">
                                         ${item.type}
                                 </td>
@@ -113,7 +113,7 @@
                                 </td>
                                 <td>
                                     <p class="p3">
-                                        <a href="/slth/" class="a1">进入专区</a>
+                                        <a href="http://www.nowh5.com${item.titleUrl}" class="a1">进入专区</a>
                                     </p>
                                 </td>
                             </tr>
