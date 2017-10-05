@@ -33,7 +33,12 @@ public class MainController {
         return view;
     }
     @RequestMapping("kaifu_info")
-    public ModelAndView kaifu(ModelAndView view){
+    public ModelAndView kaifu(ModelAndView view,String title){
+        System.out.println(title);
+        List<OpenTables> todayListByTitle = userMapper.getTodayListByTitle(title);
+        List<OpenTables> comingListByTitle = userMapper.getComingListByTitle(title);
+        view.addObject("todayList",todayListByTitle);
+        view.addObject("comingList",comingListByTitle);
         view.setViewName("kaifu_info");
         return view;
     }
