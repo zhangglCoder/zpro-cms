@@ -26,7 +26,7 @@ public class MainController {
     @RequestMapping("kaifu")
     public ModelAndView index(ModelAndView view){
         view.setViewName("kaifu");
-        List<EcmsFlash> todayList = userMapper.getTodayList();
+        List<OpenTables> todayList = userMapper.getTodayList();
         List<OpenTables> comingList = userMapper.getComingList();
         view.addObject("todayList",todayList);
         view.addObject("comingList",comingList);

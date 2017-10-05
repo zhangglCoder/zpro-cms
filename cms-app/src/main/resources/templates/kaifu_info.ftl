@@ -439,43 +439,6 @@
         </div>
     </div>
 </div>
-<script>
-    $(function(){
-        var k_can=true;
-        $(".open_t_more").click(function(){
-            k_get_list(this);
-        })
-        function k_get_list(obj){
-            if(!k_can)return;
-            k_can=false;
-            var page=$(obj).attr('rel');
-            if(!isNaN(page)&&page>1){
-                $.post("/pc/game/kaifu",{"page":page,key:''},function(data){
-                    if(data.html){
-                        $("#_list").append(data.html);
-                    }
-                    $(obj).attr('rel',data.page);
-                    k_can=true;
-                    if(data.page=="end"){
-                        k_can=false;
-                        $(obj).text("已到最后");
-                    }
-                },'json');
-            }else{
-                k_can=true;
-            }
-        }
-        //开服开测
-        var h_opentable=$(".open_table_right").height();
-        $(".open_table_left").height(h_opentable-40);
-
-        $('#searchKey').keydown(function(e){
-            if(e.keyCode==13){
-                $('#searchBtn').submit(); //处理事件
-            }
-        });
-    })
-</script>
 <!--底部-->
 <div class="footer">
     <div class="general">

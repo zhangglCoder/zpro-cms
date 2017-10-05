@@ -62,7 +62,9 @@
                                     </p>
                                 </td>
                                 <td width="13%">
-                                    <p class="p2"><span>${item.openTime}</span></p>
+                                    <p class="p2"><span>
+                                    ${item.openTime?datetime("yyyy-MM-dd HH:mm")}
+                                    </span></p>
                                 </td>
                                 <td width="20%">
                                     <p class="p2"><i>${item.area}</i></p>
@@ -70,7 +72,7 @@
                                 <td width="30%">
                                     <p class="p3">
                                         <a href="/search/?keyword=三生三世十里桃花&keytype=libao" class="a2">礼包领取</a>
-                                        <a href="/slth/" class="a1">进入专区</a>
+                                        <a href="http://www.nowh5.com${item.titleUrl}" class="a1">进入专区</a>
                                     </p>
                                 </td>
                             </tr>
@@ -96,7 +98,9 @@
                         </tr>
                         <#list comingList as item>
                             <tr>
-                                <td>${item.openTime}</td>
+                                <td>
+                                ${item.openTime?datetime("yyyy-MM-dd HH:mm")}
+                                </td>
                                 <td><p class="p1"><a href="/slth/" class="a1">${item.title}</a></p></td>
                                 <td><p class="p2">
                                         ${item.type}

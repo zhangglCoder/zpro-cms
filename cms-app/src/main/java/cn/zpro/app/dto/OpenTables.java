@@ -1,6 +1,5 @@
 package cn.zpro.app.dto;
 
-import java.util.Date;
 
 /**
  * 开服表对象
@@ -17,6 +16,15 @@ public class OpenTables {
 
     private String titlePic;
 
+    private String titleUrl;
+
+    public String getTitleUrl() {
+        return titleUrl;
+    }
+
+    public void setTitleUrl(String titleUrl) {
+        this.titleUrl = titleUrl;
+    }
 
     public String getTitlePic() {
         return titlePic;
