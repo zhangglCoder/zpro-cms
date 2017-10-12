@@ -33,8 +33,9 @@ public class MainController {
         return view;
     }
     @RequestMapping("kaifu_info")
-    public ModelAndView kaifu(ModelAndView view,String title){
-        System.out.println(title);
+    public ModelAndView kaifu(ModelAndView view,String id){
+        EcmsFlash ecmsFlash = userMapper.findById(id);
+        String title = ecmsFlash.getTitle();
         List<OpenTables> todayListByTitle = userMapper.getTodayListByTitle(title);
         List<OpenTables> comingListByTitle = userMapper.getComingListByTitle(title);
         view.addObject("todayList",todayListByTitle);

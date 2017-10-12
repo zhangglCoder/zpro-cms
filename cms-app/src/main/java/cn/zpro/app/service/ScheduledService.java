@@ -22,12 +22,10 @@ public class ScheduledService {
     private PiachService piachService;
 
     /**
-     * 每天上午10:15 触发
+     * 每天上午9:15 触发
      */
-    @Scheduled(cron = "0 15 10 ? * *")
+    @Scheduled(cron = "0 15 9 ? * *")
     public void executeTask() {
-        Thread current = Thread.currentThread();
-        System.out.println("定时任务:" + current.getId());
         doProcess();
     }
 
