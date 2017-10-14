@@ -4,10 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>${springMacroRequestContext.contextPath}</title>
-    <meta name="keywords" content="h5游戏,h5游戏开服表,手机页游开服表"/>
-    <meta name="description" content="7724游戏开服表为玩家提供实时的最新最全的h5游戏开服时间表和热门新服推荐，第一时间进新服，抢礼包！"/>
-    <meta property="qc:admins" content="2425622777677246375"/>
+    <title>H5游戏开服时间表_今日H5游戏开服表_nowh5游戏网</title>
+    <meta name="keywords" content="H5游戏开服表,h5游戏开服大全,h5游戏新服"/>
+    <meta name="description" content="nowh5游戏为您提供全面的H5游戏开服表信息,h5游戏开服资料尽在nowh5游戏"/>
     <link rel="stylesheet" type="text/css" href="/style/css/pc_7724.css"/>
     <script type="text/javascript" src="/style/js/jquery.js"></script>
     <script type="text/javascript" src="/style/js/jquery.qrcode.min.js"></script>

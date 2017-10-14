@@ -22,9 +22,9 @@ public class ScheduledService {
     private PiachService piachService;
 
     /**
-     * 每天上午9:15 触发
+     * 每天上午3:15 触发
      */
-    @Scheduled(cron = "0 15 9 ? * *")
+    @Scheduled(cron = "0 15 3 ? * *")
     public void executeTask() {
         doProcess();
     }

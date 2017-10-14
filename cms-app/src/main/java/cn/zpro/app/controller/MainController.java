@@ -6,6 +6,7 @@ import cn.zpro.app.entity.EcmsFlash;
 import cn.zpro.app.service.PiachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("main")
 public class MainController {
 
 
@@ -32,10 +32,11 @@ public class MainController {
         view.addObject("comingList",comingList);
         return view;
     }
-    @RequestMapping("kaifu_info")
-    public ModelAndView kaifu(ModelAndView view,String id){
+    @RequestMapping(value = "/{id}")
+    public ModelAndView kaifu(ModelAndView view,@PathVariable("id") String id){
         EcmsFlash ecmsFlash = userMapper.findById(id);
         String title = ecmsFlash.getTitle();
+        view.addObject("title",title);
         List<OpenTables> todayListByTitle = userMapper.getTodayListByTitle(title);
         List<OpenTables> comingListByTitle = userMapper.getComingListByTitle(title);
         view.addObject("todayList",todayListByTitle);
