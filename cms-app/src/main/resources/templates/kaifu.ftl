@@ -70,7 +70,9 @@
                                 </td>
                                 <td width="30%">
                                     <p class="p3">
-                                        <a href="/search/?keyword=三生三世十里桃花&keytype=libao" class="a2">礼包领取</a>
+
+
+                                        <a href="http://www.nowh5.com/e/search/?searchget=1&amp;tbname=cards &amp;tempid=2&amp;show=title&amp;keyboard=${item.title}" class="a2">礼包领取</a>
                                         <a href="http://www.nowh5.com${item.titleUrl}" class="a1">进入专区</a>
                                     </p>
                                 </td>
@@ -107,7 +109,7 @@
                                 <td><p class="p2"><i>${item.area}</i></p></td>
                                 <td>
                                     <p class="p3">
-                                        <a href="/search/?keyword=三生三世十里桃花&keytype=libao" class="a2">礼包领取</a>
+                                        <a href="http://www.nowh5.com/e/search/?searchget=1&amp;tbname=cards &amp;tempid=2&amp;show=title&amp;keyboard=${item.title}" class="a2">礼包领取</a>
                                     </p>
                                 </td>
                                 <td>
