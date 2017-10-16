@@ -23,7 +23,7 @@ public class MainController {
     @Autowired
     private UserMapper userMapper;
 
-    @RequestMapping("kaifu")
+    @RequestMapping(value = {"","kaifu"})
     public ModelAndView index(ModelAndView view){
         view.setViewName("kaifu");
         List<OpenTables> todayList = userMapper.getTodayList();
